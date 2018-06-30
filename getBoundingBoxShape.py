@@ -22,3 +22,4 @@ for cls in cls_name:
 
 sizeCount = np.array(sizeCount)
 print(np.average(sizeCount, axis=0))
+
