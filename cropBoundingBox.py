@@ -58,4 +58,17 @@ for gov in ['adachi', 'muroran', 'chiba', 'ichihara', 'nagakute', 'matsudo', 'ko
             # crop bounding box
             roi = img[ymin:ymax, xmin:xmax]
 
-            cv2.imwrite('/Volumes/HDCA-UT/MyCityReport/FY2018/IEEE_BigData_Paper/croppedDataset/' + cls_name + '/' + im_name, roi)
+            if roi.sum() != 0:
+                # resize image
+                h = 128
+                w = 128
+                roiResized = cv2.resize(roi, (h, w))
+
+
+                im_name = im_name.split('.')[0] + '.png'
+
+                # save original image
+                cv2.imwrite('/Volumes/HDCA-UT/MyCityReport/FY2018/IEEE_BigData_Paper/croppedDataset-original/' + cls_name + '/' + im_name, roi)
+
+                # save resized image
+                cv2.imwrite('/Volumes/HDCA-UT/MyCityReport/FY2018/IEEE_BigData_Paper/croppedDataset-resized/' + cls_name + '/' + im_name, roiResized)
