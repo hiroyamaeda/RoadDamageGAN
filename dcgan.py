@@ -229,7 +229,7 @@ class DCGAN():
 
         for i, vec in enumerate(vectors):
             gen_img = np.squeeze(self.generator.predict(vec), axis=0)
-            gen_img = (0.5 * gen_img + 0.5) * 255
+            gen_img = (0.5 * gen_img + 0.49) * 255
             interpolatedImage = cv2.cvtColor(gen_img, cv2.COLOR_RGB2BGR)
             interpolatedImage = interpolatedImage.astype(np.uint8)
             resultImage = interpolatedImage if resultImage is None else np.hstack([resultImage, interpolatedImage])
@@ -241,5 +241,5 @@ if __name__ == '__main__':
     dcgan = DCGAN()
     r, c = 5, 5
     check_noise = np.random.uniform(-1, 1, (r * c, 100))
-    dcgan.train(iterations=200000, batch_size=32, save_interval=1000, model_interval=5000, check_noise=check_noise, r=r,
+    dcgan.train(iterations=20000, batch_size=32, save_interval=50, model_interval=5000, check_noise=check_noise, r=r,
                 c=c)
