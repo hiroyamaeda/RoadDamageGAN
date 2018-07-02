@@ -8,6 +8,9 @@ from keras.utils import np_utils
 import tensorflow as tf
 from keras.backend import tensorflow_backend
 
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 import os
 import cv2
@@ -21,7 +24,7 @@ config = tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True))
 session = tf.Session(config=config)
 tensorflow_backend.set_session(session)
 
-root_dir = "/Users/maedahiroya/Reseach/git/RoadDamageGAN/croppedDataset-resized"
+root_dir = "/home/ubuntu/py3envtf/RoadDamageGAN/croppedDataset-resized"
 
 
 class DCGAN():
@@ -241,5 +244,5 @@ if __name__ == '__main__':
     dcgan = DCGAN()
     r, c = 5, 5
     check_noise = np.random.uniform(-1, 1, (r * c, 100))
-    dcgan.train(iterations=20000, batch_size=32, save_interval=50, model_interval=5000, check_noise=check_noise, r=r,
+    dcgan.train(iterations=200000, batch_size=32, save_interval=100, model_interval=5000, check_noise=check_noise, r=r,
                 c=c)
